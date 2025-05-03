@@ -1,26 +1,32 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
+import About from "./components/About";
+import Projects from "./components/Projects";
+import Contact from "./components/Contact";
 import ParticlesBg from "particles-bg";
-import Navbar from "./Navbar";
-import { motion } from "framer-motion";
 
-const App = () => (
-  <div className="app">
-    <Navbar />
-    <ParticlesBg type="cobweb" bg={true} color="#00ffc3" />
-    <motion.div
-      className="landing"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1.2 }}
-    >
-      <h1>Cybersecurity Professional</h1>
-      <p>
-        Passionate ethical hacker and threat hunter committed to defending
-        digital frontiers.
-      </p>
-    </motion.div>
-  </div>
-);
+const ParticleWrapper = () => {
+  const location = useLocation();
+  return location.pathname === "/" ? <ParticlesBg type="cobweb" bg={true} color="#00ffc3" /> : null;
+};
+
+const App = () => {
+  return (
+    <Router>
+      <div className="app">
+        <Navbar />
+        <ParticleWrapper />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+};
 
 export default App;
-
