@@ -1,34 +1,43 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import { motion } from "framer-motion";
+import "./Projects.css";
 
-const Projects = () => (
-  <div className="page">
-    <Navbar />
-    <motion.div
-      className="content"
-      initial={{ scale: 0.8, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.8 }}
-    >
-      <h2>Projects</h2>
-      <ul>
-        <li>
-          <strong>Phishing Email Detector</strong>: Flask + ML + NLP to detect
-          malicious emails.
-        </li>
-        <li>
-          <strong>Network Scanner Web App</strong>: Real-time subnet scanning
-          via Flask and PostgreSQL.
-        </li>
-        <li>
-          <strong>Log Analyzer</strong>: React + Flask dashboard to spot threats
-          in system logs.
-        </li>
-      </ul>
-    </motion.div>
-  </div>
-);
+const projects = [
+  {
+    title: "Password Strength Checker",
+    description: "Checks password strength in real-time, highlights weak patterns using platform-specific analysis.",
+    tech: "React, Flask, Python, Bootstrap",
+    link: "#"
+  },
+  {
+    title: "Log Analysis Tool",
+    description: "Web-based tool that analyzes logs for suspicious patterns and security threats in real time.",
+    tech: "Flask, Socket.IO, React, Matplotlib, MySQL",
+    link: "#"
+  },
+  {
+    title: "Simple Network Scanner",
+    description: "Scans local networks and detects active hosts; stores results in a PostgreSQL database.",
+    tech: "Flask, React, Render PostgreSQL",
+    link: "#"
+  }
+];
+
+const Projects = () => {
+  return (
+    <div className="projects-page">
+      <h1 className="projects-title">Cybersecurity Projects</h1>
+      <div className="projects-grid">
+        {projects.map((proj, idx) => (
+          <div className="project-card" key={idx}>
+            <h3>{proj.title}</h3>
+            <p>{proj.description}</p>
+            <p><strong>Technologies:</strong> {proj.tech}</p>
+            <a href={proj.link} target="_blank" rel="noreferrer">View Project</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default Projects;
-
