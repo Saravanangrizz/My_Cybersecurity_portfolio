@@ -1,9 +1,9 @@
 services:
   - type: web
     name: cyber-portfolio
-    env: static
-    buildCommand: npm install && npm run build
-    staticPublishPath: build
+    env: node
+    buildCommand: npm install
+    startCommand: npm run build && serve -s build
     envVars:
       - key: NODE_VERSION
         value: 18
